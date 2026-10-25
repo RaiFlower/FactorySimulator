@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/Platforms/">
+    <Project Path="FactorySimulator.DesktopGL/FactorySimulator.DesktopGL.csproj" />
+  </Folder>
+  <Project Path="FactorySimulator.Content/FactorySimulator.Content.csproj" />
+  <Project Path="FactorySimulator.Core/FactorySimulator.Core.csproj" />
+</Solution>

@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "FactorySimulator (DesktopGL)",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/FactorySimulator.DesktopGL/FactorySimulator.DesktopGL.csproj",
+            "preLaunchTask": "Build: FactorySimulator.DesktopGL"
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <PublishReadyToRun>false</PublishReadyToRun>
+    <TieredCompilation>false</TieredCompilation>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>../FactorySimulator.Core/Assets/Icon.ico</ApplicationIcon>
+    <AssemblyName>FactorySimulator</AssemblyName>
+    <MonoGamePlatform>DesktopGL</MonoGamePlatform>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FactorySimulator.Core\FactorySimulator.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+      <UpToDateCheckInput Include="..\Content\Assets\**\*" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.5" />
+  </ItemGroup>
+  <Import Project="..\FactorySimulator.Content\BuildContent.targets" />
+</Project>
