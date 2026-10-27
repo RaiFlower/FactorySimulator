@@ -10,9 +10,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <None Update="Assets\**\*" CopyToOutputDirectory="PreserveNewest" />
+    <None Remove="Assets\**\*" />
+    <None Include="Assets\**\*" Link="assets\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
   <Target Name="CleanOutputAssets" BeforeTargets="BeforeBuild">
-    <RemoveDir Directories="$(OutDir)Assets" />
+    <RemoveDir Directories="$(OutDir)assets" />
   </Target>
 </Project>

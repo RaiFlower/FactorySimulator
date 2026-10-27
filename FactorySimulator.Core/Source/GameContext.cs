@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FactorySimulator.Core.Source.AssetSystem;
+using FactorySimulator.Core.Source.InputSystem;
 using FactorySimulator.Core.Source.RegistrySystem;
 using FactorySimulator.Core.Source.SceneSystem;
 

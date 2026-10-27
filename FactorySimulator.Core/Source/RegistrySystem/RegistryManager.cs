@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using FactorySimulator.Core.Source.AssetSystem;
 using FactorySimulator.Core.Source.ContentSystem;
+using FactorySimulator.Core.Source.InputSystem;
 using FactorySimulator.Core.Source.SceneSystem;
 using Microsoft.Xna.Framework.Content;
 
@@ -13,6 +14,7 @@ namespace FactorySimulator.Core.Source.RegistrySystem;
 public class RegistryManager : Manager
 {
     public readonly Dictionary<string, Scene> Scenes = new();
+    public readonly Dictionary<string, InputAction> InputActions = new();
 
     public RegistryManager(GameContextView gameContextView) : base(gameContextView)
     {
@@ -23,7 +25,7 @@ public class RegistryManager : Manager
 
     private List<ContentModuleRecord> _modules = new();
 
-    public void LoadContentModules()
+    public void RegisterContent()
     {
         foreach (var type in Assembly.GetExecutingAssembly().GetTypes())
         {
@@ -32,10 +34,7 @@ public class RegistryManager : Manager
 
             _modules.Add(new ContentModuleRecord(attr, (ContentModule)Activator.CreateInstance(type)!));
         }
-    }
 
-    public void RegisterContent()
-    {
         _modules.ForEach(m => m.Module.RegisterContent(this));
     }
 
@@ -47,6 +46,9 @@ public class RegistryManager : Manager
         {
             case Scene scene:
                 Scenes.Add(scene.Name, scene);
+                break;
+            case InputAction inputAction:
+                InputActions.Add(inputAction.Name, inputAction);
                 break;
         }
     }

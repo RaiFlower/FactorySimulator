@@ -19,7 +19,7 @@ public class AssetManager : Manager
     {
         _graphicsDevice = graphicsDevice;
 
-        _assetFolderPath = Path.Combine(AppContext.BaseDirectory, "Assets");
+        _assetFolderPath = Path.Combine(AppContext.BaseDirectory, "assets");
     }
 
     public void LoadAssets()

@@ -22,9 +22,13 @@ namespace FactorySimulator.Core
 
             Services.AddService(typeof(GraphicsDeviceManager), graphicsDeviceManager);
 
-            Content.RootDirectory = "Content";
-
             _gameContextView = _gameContext.BuildView();
+
+            graphicsDeviceManager.PreferredBackBufferWidth = 1280;
+            graphicsDeviceManager.PreferredBackBufferHeight = 720;
+
+            Window.Title = "Factory Simulator";
+            IsMouseVisible = true;
         }
 
         protected override void Initialize()
@@ -35,9 +39,9 @@ namespace FactorySimulator.Core
             _gameContext.RegistryManager = new(_gameContextView);
             _gameContext.AssetManager = new(_gameContextView, GraphicsDevice);
 
-            _gameContext.RegistryManager.LoadContentModules();
-
             _gameContext.RegistryManager.RegisterContent();
+
+            _gameContext.InputManager.Init();
 
             _gameContext.SceneManager.SetActiveScene("base:level");
 
@@ -56,6 +60,7 @@ namespace FactorySimulator.Core
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            _gameContext.InputManager.Update();
             _gameContext.SceneManager.Update();
 
             base.Update(gameTime);
