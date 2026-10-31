@@ -52,13 +52,16 @@ namespace FactorySimulator.Core
         {
             base.LoadContent();
 
-            _gameContext.AssetManager.LoadAssets();
+            _gameContext.AssetManager.CreateAssets();
         }
 
         protected override void Update(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+            _gameContext.Time = (float)gameTime.TotalGameTime.TotalSeconds;
+            _gameContext.DeltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             _gameContext.InputManager.Update();
             _gameContext.SceneManager.Update();

@@ -8,7 +8,7 @@ namespace FactorySimulator.Core.Source.RegistrySystem;
 public class ContentItem
 {
     public readonly string Name;
-    public GameContextView GameContextView = null!;
+    protected GameContextView _gameContextView = null!;
 
     public ContentItem(string name)
     {
@@ -17,6 +17,10 @@ public class ContentItem
 
     public void ProvideContextView(GameContextView gameContextView)
     {
-        GameContextView = gameContextView;
+        _gameContextView = gameContextView;
     }
+
+    public virtual void LoadContentReferences() { }
+    
+    public virtual void LoadAssetReferences() { }
 }

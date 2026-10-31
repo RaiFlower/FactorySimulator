@@ -6,16 +6,20 @@ using FactorySimulator.Core.Source.AssetSystem;
 using FactorySimulator.Core.Source.InputSystem;
 using FactorySimulator.Core.Source.RegistrySystem;
 using FactorySimulator.Core.Source.SceneSystem;
+using Microsoft.Xna.Framework;
 
 namespace FactorySimulator.Core.Source;
 
 public interface IGameContext
 {
-    InputManager InputManager { get; }
-    RenderManager RenderManager { get; }
-    SceneManager SceneManager { get; }
-    RegistryManager RegistryManager { get; }
-    AssetManager AssetManager { get; }
+    public InputManager InputManager { get; }
+    public RenderManager RenderManager { get; }
+    public SceneManager SceneManager { get; }
+    public RegistryManager RegistryManager { get; }
+    public AssetManager AssetManager { get; }
+
+    public float Time { get; }
+    public float DeltaTime { get; }
 }
 
 public class GameContext : IGameContext
@@ -25,6 +29,9 @@ public class GameContext : IGameContext
     public SceneManager SceneManager { get; set; } = null!;
     public RegistryManager RegistryManager { get; set; } = null!;
     public AssetManager AssetManager { get; set; } = null!;
+
+    public float Time { get; set; }
+    public float DeltaTime { get; set; }
 
     public GameContextView BuildView()
     {
@@ -46,4 +53,7 @@ public class GameContextView : IGameContext
     public SceneManager SceneManager => _gameContext.SceneManager;
     public RegistryManager RegistryManager => _gameContext.RegistryManager;
     public AssetManager AssetManager => _gameContext.AssetManager;
+
+    public float Time => _gameContext.Time;
+    public float DeltaTime => _gameContext.DeltaTime;
 }

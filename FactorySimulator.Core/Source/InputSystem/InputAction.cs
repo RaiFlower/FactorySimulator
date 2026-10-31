@@ -17,8 +17,8 @@ public class InputAction : ContentItem
 
     public bool IsPressed => Bindings.Any(b => b.IsPressed);
 
-    public Action OnPress = null!;
-    public Action OnRelease = null!;
+    public event Action OnPress = null!;
+    public event Action OnRelease = null!;
 
     public void Update(InputSnapshot inputSnapshot)
     {

@@ -36,6 +36,8 @@ public class RegistryManager : Manager
         }
 
         _modules.ForEach(m => m.Module.RegisterContent(this));
+
+        LoadContentReferences();
     }
 
     public void Register(ContentItem registryEntry)
@@ -51,5 +53,17 @@ public class RegistryManager : Manager
                 InputActions.Add(inputAction.Name, inputAction);
                 break;
         }
+    }
+
+    public void LoadContentReferences()
+    {
+        Scenes.Values.ToList().ForEach(item => item.LoadContentReferences());
+        InputActions.Values.ToList().ForEach(item => item.LoadContentReferences());
+    }
+
+    public void LoadAssetReferences()
+    {
+        Scenes.Values.ToList().ForEach(item => item.LoadAssetReferences());
+        InputActions.Values.ToList().ForEach(item => item.LoadAssetReferences());
     }
 }

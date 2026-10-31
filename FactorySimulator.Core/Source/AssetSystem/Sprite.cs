@@ -14,9 +14,24 @@ public class Sprite : AssetItem
 {
     public Texture2D Texture { get; private set; } = null!;
 
-    public Sprite(string name, string path) : base(name, path)
-    {
+    public int Scale { get; init; }
 
+    public int Frames { get; init; }
+    public int Variants { get; init; }
+
+    public int FrameHeight { get; private set; }
+    public int FrameWidth { get; private set; }
+
+    public int FPS { get; init; }
+
+    public Sprite(string name, string path, int scale, int frames, int variants, int fps) : base(name, path)
+    {
+        Scale = scale;
+
+        Frames = frames;
+        Variants = variants;
+
+        FPS = fps;
     }
 
     public override void Load(GraphicsDevice graphicsDevice)
@@ -25,9 +40,9 @@ public class Sprite : AssetItem
 
         using var stream = File.OpenRead(Path);
         Texture = Texture2D.FromStream(graphicsDevice, stream);
-        
+
         var data = new Color[Texture.Width * Texture.Height];
-        
+
         Texture.GetData(data);
 
         for (int i = 0; i < data.Length; i++)
@@ -36,5 +51,18 @@ public class Sprite : AssetItem
         }
 
         Texture.SetData(data);
+
+        FrameWidth = Texture.Width / Variants;
+        FrameHeight = Texture.Height / Frames;
+    }
+
+    public Rectangle GetSourceRect(int frame, int variant)
+    {
+        return new(variant * FrameWidth, frame * FrameHeight, FrameWidth, FrameHeight);
+    }
+
+    public int GetFrameNumber(float time)
+    {
+        return (int)(time * FPS) % Frames;
     }
 }
