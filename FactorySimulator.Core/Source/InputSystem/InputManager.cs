@@ -35,10 +35,10 @@ public class InputManager : Manager
     {
         base.Init();
 
-        _upAction = _gameContextView.RegistryManager.InputActions["up"];
-        _downAction = _gameContextView.RegistryManager.InputActions["down"];
-        _leftAction = _gameContextView.RegistryManager.InputActions["left"];
-        _rightAction = _gameContextView.RegistryManager.InputActions["right"];
+        _upAction = _gameContextView.RegistryManager.InputActions["base:up"];
+        _downAction = _gameContextView.RegistryManager.InputActions["base:down"];
+        _leftAction = _gameContextView.RegistryManager.InputActions["base:left"];
+        _rightAction = _gameContextView.RegistryManager.InputActions["base:right"];
     }
 
     public override void Update()
@@ -60,7 +60,7 @@ public class InputManager : Manager
             (_rightAction.IsPressed ? 1 : 0) + (_leftAction.IsPressed ? -1 : 0),
             (_upAction.IsPressed ? 1 : 0) + (_downAction.IsPressed ? -1 : 0)
         );
-
+        
         if (DirectionInput.LengthSquared() > 1.0f)
         {
             DirectionInput = Vector2.Normalize(DirectionInput);

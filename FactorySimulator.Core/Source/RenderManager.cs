@@ -46,7 +46,7 @@ public class RenderManager : Manager
             sprite.Texture,
             new Rectangle(
                 (int)MathF.Floor(position.X),
-                (int)MathF.Floor(position.Y),
+                (int)MathF.Floor(position.Y) - (scale != 0.0f ? sprite.FrameHeight / sprite.Scale * scale : sprite.FrameHeight),
                 scale != 0.0f ? sprite.FrameWidth / sprite.Scale * scale : sprite.FrameWidth,
                 scale != 0.0f ? sprite.FrameHeight / sprite.Scale * scale : sprite.FrameHeight
                 ),

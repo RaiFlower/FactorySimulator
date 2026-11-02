@@ -20,6 +20,8 @@ public interface IGameContext
 
     public float Time { get; }
     public float DeltaTime { get; }
+
+    public Vector2 ViewportSize { get; }
 }
 
 public class GameContext : IGameContext
@@ -32,6 +34,8 @@ public class GameContext : IGameContext
 
     public float Time { get; set; }
     public float DeltaTime { get; set; }
+
+    public Vector2 ViewportSize { get; set; } = new Vector2(1280, 720);
 
     public GameContextView BuildView()
     {
@@ -56,4 +60,6 @@ public class GameContextView : IGameContext
 
     public float Time => _gameContext.Time;
     public float DeltaTime => _gameContext.DeltaTime;
+
+    public Vector2 ViewportSize => _gameContext.ViewportSize;
 }

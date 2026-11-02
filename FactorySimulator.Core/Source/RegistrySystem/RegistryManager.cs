@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using FactorySimulator.Core.Source.AssetSystem;
 using FactorySimulator.Core.Source.ContentSystem;
+using FactorySimulator.Core.Source.EntitySystem;
 using FactorySimulator.Core.Source.InputSystem;
 using FactorySimulator.Core.Source.SceneSystem;
 using Microsoft.Xna.Framework.Content;
@@ -15,6 +16,7 @@ public class RegistryManager : Manager
 {
     public readonly Dictionary<string, Scene> Scenes = new();
     public readonly Dictionary<string, InputAction> InputActions = new();
+    public readonly Dictionary<string, EntityPrototype> EntityPrototypes = new();
 
     public RegistryManager(GameContextView gameContextView) : base(gameContextView)
     {
@@ -52,6 +54,9 @@ public class RegistryManager : Manager
             case InputAction inputAction:
                 InputActions.Add(inputAction.Name, inputAction);
                 break;
+            case EntityPrototype entityPrototype:
+                EntityPrototypes.Add(entityPrototype.Name, entityPrototype);
+                break;
         }
     }
 
@@ -59,11 +64,13 @@ public class RegistryManager : Manager
     {
         Scenes.Values.ToList().ForEach(item => item.LoadContentReferences());
         InputActions.Values.ToList().ForEach(item => item.LoadContentReferences());
+        EntityPrototypes.Values.ToList().ForEach(item => item.LoadContentReferences());
     }
 
     public void LoadAssetReferences()
     {
         Scenes.Values.ToList().ForEach(item => item.LoadAssetReferences());
         InputActions.Values.ToList().ForEach(item => item.LoadAssetReferences());
+        EntityPrototypes.Values.ToList().ForEach(item => item.LoadAssetReferences());
     }
 }
